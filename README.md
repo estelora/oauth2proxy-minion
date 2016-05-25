@@ -119,6 +119,6 @@ spec:
 * **Node:** provisioned hardware (in this case, a VM in the cloud).
 * **Pod:** container or group of containers that support each other to run tasks.
 * **Service Discovery:** allows you to hard-code host names within your Kubernetes minion into your code.
-* Containers: a Docker container or google container.
+* **Containers:** a Docker container or google container.
 
 
