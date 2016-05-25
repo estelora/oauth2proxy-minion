@@ -3,8 +3,7 @@
 In this tutorial we are going to set up a Kubernetes minion server that combines a basic guestbook app with oauth2_proxy.
 
 ###Kubernetes
-Kubernetes is an open-source container orchestration and management system. This tutorial creates a Kubernetes minion.
-
+Kubernetes is an open-source container orchestration and management system. 
 
 ### Let's get started.
 > This tutorial assumes you have a functioning Kubernetes cluster. I did this in AWS.
