@@ -107,7 +107,7 @@ spec:
  * The upstream shows Kubernetes' service discovery - the internal address is `http://frontend`.
 8. Create the Oauth2_proxy Service
 9. Debug Network Issues as necessary!
-  * You can adjust your network with .yaml on the Kubernetes side. 
+  * You can adjust your network with .yaml on the Kubernetes side. 
   * You can use `kubectl` logs and ssh into a docker container itself.
   * Adjust firewalls for both your services and external load balancers.
 
