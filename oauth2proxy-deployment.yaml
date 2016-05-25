@@ -1,0 +1,36 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: oauth2-proxy
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: oauth2-proxy
+        tier: backend
+    spec:
+      containers:
+      - name: oauth2-proxy
+        # This sets the port at 4180
+        image: estelora/oauth2_proxy
+        volumeMounts:
+        - mountPath: /etc/nginx/conf.d
+          name: nginx-volume
+        ports:
+        - containerPort: 4180
+        command:
+        # Please set these variables for your project.
+        - oauth2_proxy
+        # Here is an example of service discovery.
+        - --upstream=http://frontend
+        - --email-domain=example.com
+        - --client-id=client-id.apps.googleusercontent.com
+        - --client-secret="google-client-secret"
+        - --cookie-domain=.internal.example.com
+        - --redirect-url=https://auth.internal.example.com/oauth2/callback
+        - --cookie-secret="secret-chocolate-chip-cookie"
+        # This variable stays the same - this is an internal IP
+        - --http-address=0.0.0.0:4180
+
+
