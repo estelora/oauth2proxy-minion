@@ -2,7 +2,7 @@
 
 In this tutorial we are going to set up a Kubernetes minion server that combines a basic guestbook app with oauth2_proxy.
 
-###Kubernetes
+### Kubernetes
 Kubernetes is an open-source container orchestration and management system. 
 
 ### Let's get started.
@@ -21,22 +21,22 @@ Kubernetes is an open-source container orchestration and management system.
 This tutorial is based on the [Kubernetes guestbook example](https://github.com/kubernetes/kubernetes/tree/release-1.2/examples/guestbook). I have added a few [adjustments](https://github.com/estelora/oauth2proxy-minion) to this in a git repository, but for most of it, you can follow along with their documentation.
 
 
-####1. Set up Redis Deployment and Service
+#### 1. Set up Redis Deployment and Service
    * Set Up Redis Master Deployment .yaml file
    * Set Up Redis Master Service .yaml file
    * Create Redis Master Service, the Redis Master     Deployment.
 
-####2. Check Services, Deployments, and Pods 
+#### 2. Check Services, Deployments, and Pods 
    * Using kubectl, check your services, pods, and deployments. You can also check the logs of a single pod. The instructions on how to do this are in Kubernetes guestbook readme.
 
-####3. Repeat Steps 1 & 2 for Redis Slave Service and Deployment, as well as the Front end Service and Deployment.
+#### 3. Repeat Steps 1 & 2 for Redis Slave Service and Deployment, as well as the Front end Service and Deployment.
 
-####4. Create an additional External Elastic Load Balancer in AWS (or somewhere else).
+#### 4. Create an additional External Elastic Load Balancer in AWS (or somewhere else).
   * This allows external traffic into our minion.
   * I'll let you figure this one out. 
   * There is an appendix in the guestbook docs on this.
   
-####5. Set up Oauth2_proxy Service
+#### 5. Set up Oauth2_proxy Service
  * I assume you know something about oauth2_proxy. If not, read the [documentation](https://github.com/bitly/oauth2_proxy).
  * The .yaml files for oauth2_proxy can be found in my [git repository](https://github.com/estelora/oauth2proxy-minion) 
  * Set up an `oauth2proxy_service.yaml` file as follows:
@@ -58,9 +58,9 @@ spec:
     app: oauth2-proxy
     tier: backend   
 ```
-####6. Create the Oauth2_proxy Service
+#### 6. Create the Oauth2_proxy Service
  
-####7. Set up Oauth2_proxy Deployment
+#### 7. Set up Oauth2_proxy Deployment
  * I assume you know something about oauth2_proxy. If not, read the documentation.
  * Set up an `oauth2proxy_deployment.yaml` file as follows:
  
@@ -104,17 +104,17 @@ spec:
  * The port is set to 4180 in the container, service, and deployment. 
  * The `command:` sets up oauth2_proxy command line arguments.
  * The upstream shows Kubernetes' service discovery - the internal address is `http://frontend`.
-8. Create the Oauth2_proxy Service
-9. Debug Network Issues as necessary!
+#### 8. Create the Oauth2_proxy Service
+#### 9. Debug Network Issues as necessary!
   * You can adjust your network with .yaml on the Kubernetes side. 
   * You can use `kubectl` logs and ssh into a docker container itself.
   * Adjust firewalls for both your services and external load balancers.
 
 
 ##### Kuberenetes Glossary
-* **Deployment:** set of parameters for the desired state of pods
+* **Deployment:** a set of parameters for the desired state of pods.
 * **Minion:** a server that performs work, configures networking for containers, and runs tasks assigned to containers.
-* **Service:** internal load balancer
+* **Service:** an internal load balancer.
 * **Node:** provisioned hardware (in this case, a VM in the cloud).
 * **Pod:** container or group of containers that support each other to run tasks.
 * **Service Discovery:** allows you to hard-code host names within your Kubernetes minion into your code.
